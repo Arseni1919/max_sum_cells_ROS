@@ -3,7 +3,7 @@ from CONSTANTS import *
 from pure_functions import *
 from algorithms import *
 from main_of_algorithm_help_functions import *
-
+from ROS_CONSTANTS import *
 
 def callback_READY_topic(msg):
     message = json.loads(msg.data)
