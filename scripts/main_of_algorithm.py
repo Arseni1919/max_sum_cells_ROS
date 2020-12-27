@@ -70,3 +70,5 @@ if __name__ == '__main__':
         wait(iteration)
         calc(iteration, all_agents)
     finish()
+
+#
