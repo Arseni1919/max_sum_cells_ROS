@@ -2,8 +2,15 @@
 # ------------------------------------ for PyCharm / for ROS
 # from scripts.CONSTANTS import *
 from CONSTANTS import *
+
+
 # ------------------------------------
 
+def create_empty_by_iteration_dict():
+    curr_dict = {}
+    for i in range(ITERATIONS):
+        curr_dict[i] = {}
+    return curr_dict
 
 
 def distance(pos1, pos2):
@@ -32,7 +39,7 @@ def foo():
 
 
 def getAngle(a, b, c):
-    ang = math.degrees(math.atan2(c[1]-b[1], c[0]-b[0]) - math.atan2(a[1]-b[1], a[0]-b[0]))
+    ang = math.degrees(math.atan2(c[1] - b[1], c[0] - b[0]) - math.atan2(a[1] - b[1], a[0] - b[0]))
     curr_ang = ang + 360 if ang < 0 else ang
     small_ang = 360 - curr_ang if curr_ang > 180 else curr_ang
     return small_ang

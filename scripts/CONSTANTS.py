@@ -1,14 +1,15 @@
 #!/usr/bin/env python
-# import pygame
+
 from __future__ import print_function
 import os
 from decimal import Decimal
-
 import sys
 print(sys.executable)
 print('---')
 for i in sys.path:
     print(i)
+
+# import pygame
 from prettytable import PrettyTable
 import os
 import random
@@ -31,6 +32,13 @@ import itertools
 from pprint import pprint
 # import statistics
 from collections import namedtuple
+import rospy
+from std_msgs.msg import Int32, Bool, String
+import actionlib
+from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
+# from nav_msgs.msg import Odometry
+# from tf.transformations import quaternion_from_euler
+from geometry_msgs.msg import *
 
 
 CellTuple = namedtuple('CellTuple', ['pos', ])
@@ -67,6 +75,8 @@ logging.basicConfig(format=_format, level=logging.INFO,
 ITERATIONS = 3
 MINI_ITERATIONS = 5
 NEED_TO_SAVE_RESULTS = True
+# MOVE_REAL_ROBOTS = True
+MOVE_REAL_ROBOTS = False
 POS_POLICY = 'random_furthest'
 req = 100
 
