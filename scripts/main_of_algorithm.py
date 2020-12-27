@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 from CONSTANTS import *
 from pure_functions import *
+from algorithms import *
+from main_of_algorithm_help_functions import *
 
 
 def callback_READY_topic(msg):
@@ -28,15 +30,15 @@ def wait(curr_iteration):
     print('[WAIT] - finished')
 
 
-def calc(curr_iteration):
-    new_positions = {'iteration': curr_iteration, 'positions': {}}
-    for robot in ROBOTS:
-        new_positions['positions'][robot.name] = (0, 0)
+def calc(curr_iteration, all_agents):
+    message_of_new_positions = {'iteration': curr_iteration}
     # update new pos with alg
-    message = json.dumps(new_positions)
+    new_positions, collisions = algorithm(params={}, all_agents=all_agents)
+    message_of_new_positions['positions'] = new_positions
+    message = json.dumps(message_of_new_positions)
     pub_CALC_READY_topic.publish(message)
     print(message)
-    print('[CALC WAIT] - finished')
+    print('[CALC] - finished')
 
 
 def finish():
@@ -60,9 +62,11 @@ if __name__ == '__main__':
     pub_CALC_READY_topic = rospy.Publisher('CALC_READY_topic', String, latch=True, queue_size=50)
     sub_CALC_READY_topic = rospy.Subscriber('CALC_READY_topic', String, callback_CALC_READY_topic)
     rate = rospy.Rate(1)  # 1 second
+    algorithm = get_the_algorithm(CURRENT_ALGORITHM)
+    all_agents = create_all_agents(all_sprites=SPRITES)
 
-    for iteration in range(ITERATIONS):
+    for iteration in range(ITERATIONS_IN_BIG_LOOPS):
         print('# --------------------- iteration: %s --------------------- #' % iteration)
         wait(iteration)
-        calc(iteration)
+        calc(iteration, all_agents)
     finish()

@@ -42,16 +42,6 @@ class Robot:
     def get_cell_size(self):
         return self.cell_size
 
-    def get_access_to_inbox_TAC(self, type_of_requirement, name_of_agent=None, message=None, index_of_iteration=0):
-
-        with self._lock:
-
-            if type_of_requirement == copy_types.copy:
-                return copy.deepcopy(self.tuple_keys_inbox)
-
-            if type_of_requirement in message_types:
-                self.tuple_keys_inbox[index_of_iteration][(name_of_agent, type_of_requirement)] = message
-
     def get_SR(self):
         return self.SR
 

@@ -326,7 +326,7 @@ if __name__ == '__main__':
     # move(0, named_tuple_of_this_robot.pos)
 
     # start(READY)
-    for iteration in range(ITERATIONS):
+    for iteration in range(ITERATIONS_IN_BIG_LOOPS):
         print('# --------------------- iteration: %s --------------------- #' % iteration)
         wait(iteration)
         # prep(iteration)
