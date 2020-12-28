@@ -65,7 +65,7 @@ def finish():
 
 if __name__ == '__main__':
     # ------------------------ INPUT ------------------------ #
-    print('######################### ALGORITHM #########################')
+    print('######################### %s #########################' % CURRENT_ALGORITHM)
 
     CALC_READY_dict = create_empty_by_iteration_dict()
     READY_dict = create_empty_by_iteration_dict()

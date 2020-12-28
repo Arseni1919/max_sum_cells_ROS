@@ -49,12 +49,12 @@ def get_choices(all_agents, iteration):
 
             max_value = max(counter_dict.values())
             cells_with_highest_value = [k for k, v in counter_dict.items() if v == max_value]
-            text_to_print += colored(a.name, 'green')
-            choose_str = 'chooses one of' if len(cells_with_highest_value) > 1 else 'chooses'
+            # text_to_print += colored(a.name, 'green')
+            # choose_str = 'chooses one of' if len(cells_with_highest_value) > 1 else 'chooses'
             # text_to_print += f'{choose_str}: {cells_with_highest_value}'
             # text_to_print += f'with the highest value: {max_value:.2f}\n'
             assignments[a.name] = cells_with_highest_value
-    text_to_print += colored('---', 'blue')
+    # text_to_print += colored('---', 'blue')
     # print(text_to_print)
     return assignments
 
