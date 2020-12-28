@@ -333,6 +333,7 @@ if __name__ == '__main__':
         # prep(iteration)
         # calc_wait(iteration)
         next_pos = calc(iteration)
-        move_wait(iteration)
+        if ONE_BY_ONE:
+            move_wait(iteration)
         move(iteration, next_pos)
     finish()

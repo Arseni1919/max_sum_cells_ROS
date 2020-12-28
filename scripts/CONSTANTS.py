@@ -36,31 +36,27 @@ import collections
 import operator
 # from termcolor import colored
 
-
-
 CellTuple = namedtuple('CellTuple', ['pos', 'name', 'num' ])
 TargetTuple = namedtuple('TargetTuple', ['pos', 'req', 'name', 'num'])
 RobotTuple = namedtuple('AgentTuple',
                         ['pos', 'num_of_robot_nei', 'num_of_target_nei', 'name', 'num', 'cred', 'SR', 'MR'])
-
 # for logging
 _format = "%(asctime)s: %(message)s"
-logging.basicConfig(format=_format, level=logging.INFO,
-                    datefmt="%H:%M:%S")
-# logging.getLogger().setLevel(logging.DEBUG)
+logging.basicConfig(format=_format, level=logging.INFO, datefmt="%H:%M:%S")
+
 
 # -------------------------------------------------------- FOR EXPERIMENT
 ITERATIONS_IN_BIG_LOOPS = 5
 ITERATIONS_IN_SMALL_LOOPS = 10
-# MOVE_REAL_ROBOTS = True
-MOVE_REAL_ROBOTS = False
+MOVE_REAL_ROBOTS = True
+# MOVE_REAL_ROBOTS = False
+# ONE_BY_ONE = True
+ONE_BY_ONE = False
 POS_POLICY = 'random_furthest'
 REQ = 100
 CRED = 30
 SR = 1.0
 MR = 2.5
-DISTANCE_BETWEEN_CELLS = 1
-start_pose_to_go = ( 0.52,0.08)
 # EXECUTE_DELAY = True
 EXECUTE_DELAY = False
 DELAY_OF_COLLISION = 70
@@ -93,26 +89,28 @@ SAVE_WEIGHTS = True
 # SAVE_WEIGHTS = False
 
 TARGETS = [
-    TargetTuple(pos=(2.5,2.5), req=REQ, name='target1', num=1),
-    TargetTuple(pos=(0,0), req=REQ, name='target2', num=2),
+    TargetTuple(pos=(0.60,2.00), req=REQ, name='target1', num=1),
+    TargetTuple(pos=(2.10,2.00), req=REQ, name='target2', num=2),
     # TargetTuple(pos=(0, -2), req=req, name='target3', num=3),
     # TargetTuple(pos=(4, -2), req=req, name='target4', num=4),
 ]
 
 ROBOTS = [
-    # RobotTuple(pos=(0.65,2.03), num_of_robot_nei=None, num_of_target_nei=None, name='robot1', num=1, cred=cred,
-    #            SR=SR, MR=MR),
-    # RobotTuple(pos=(2.1, 3), num_of_robot_nei=None, num_of_target_nei=None, name='robot2', num=2, cred=cred,
-    #            SR=SR, MR=MR),
-    RobotTuple(pos=( 2.13,2.04), num_of_robot_nei=None, num_of_target_nei=None, name='robot3', num=3, cred=CRED,
+    RobotTuple(pos=(2.18,0.07), num_of_robot_nei=None, num_of_target_nei=None, name='robot1', num=1, cred=CRED,
                SR=SR, MR=MR),
-    # RobotTuple(pos=(1.2, 1), num_of_robot_nei=None, num_of_target_nei=None, name='robot4', num=4, cred=cred,
+    # RobotTuple(pos=(2.1, 3), num_of_robot_nei=None, num_of_target_nei=None, name='robot2', num=2, cred=CRED,
     #            SR=SR, MR=MR),
-    RobotTuple(pos=(2.18,0.07), num_of_robot_nei=None, num_of_target_nei=None, name='robot5', num=5, cred=CRED,
-               SR=SR, MR=MR)
+    RobotTuple(pos=( 0.52,0.08), num_of_robot_nei=None, num_of_target_nei=None, name='robot3', num=3, cred=CRED,
+               SR=SR, MR=MR),
+    # RobotTuple(pos=(1.2, 1), num_of_robot_nei=None, num_of_target_nei=None, name='robot4', num=4, cred=CRED,
+    #            SR=SR, MR=MR),
+    # RobotTuple(pos=(2.18,0.07), num_of_robot_nei=None, num_of_target_nei=None, name='robot5', num=5, cred=CRED,
+    #            SR=SR, MR=MR)
 ]
 
 CELLS = []
+DISTANCE_BETWEEN_CELLS = 1.6
+start_pose_to_go = (0.52, 0.08)
 #################
 # p_2 . . . p_3 #
 # .         .   #
@@ -150,10 +148,11 @@ for r in range(rows-1, -1, -1):
 
     raw = []
     for c in range(columns):
+        counter_cells += 1
         curr_x, curr_y = get_xy(p_1, p_2, p_3, p_4, row_divisions[r], column_divisions[c])
         v = np.array([curr_x, curr_y])
-        raw.append('%s,%s' % (round(v[0], 2), round(v[1], 2)))
-        counter_cells += 1
+        raw.append('%s,%s (%s)' % (round(v[0], 2), round(v[1], 2), counter_cells))
+
         CELLS.append(CellTuple(pos=(v[0], v[1]), name='cell%s' % counter_cells, num=counter_cells))
     field.add_row(raw)
 

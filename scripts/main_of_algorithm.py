@@ -30,15 +30,29 @@ def wait(curr_iteration):
     print('[WAIT] - finished')
 
 
-def calc(curr_iteration, all_agents):
+def calc(curr_iteration):
     message_of_new_positions = {'iteration': curr_iteration}
     # update new pos with alg
-    new_positions, collisions = algorithm(params={}, all_agents=all_agents)
+    new_positions, collisions = ALGORITHM(params={}, all_agents=ALL_AGENTS)
     message_of_new_positions['positions'] = new_positions
     message = json.dumps(message_of_new_positions)
     pub_CALC_READY_topic.publish(message)
-    print(message)
+    print_check(message, ALL_AGENTS, new_positions)
     print('[CALC] - finished')
+
+
+def print_check(message, all_agents, new_positions):
+    print(message)
+    for agent1 in all_agents:
+        if 'robot' in agent1.name:
+            print('%s domain: %s' % (agent1.name, agent1.domain))
+
+            for agent2 in all_agents:
+                if 'cell' in agent2.name:
+                    if new_positions[agent1.name] == agent2.pos:
+                        print('%s -> %s' % (agent1.name, agent2.name))
+
+        # print('%s neighbours: %s' % (agent.name, [a.name for a in agent.neighbours]))
 
 
 def finish():
@@ -62,13 +76,13 @@ if __name__ == '__main__':
     pub_CALC_READY_topic = rospy.Publisher('CALC_READY_topic', String, latch=True, queue_size=50)
     sub_CALC_READY_topic = rospy.Subscriber('CALC_READY_topic', String, callback_CALC_READY_topic)
     rate = rospy.Rate(1)  # 1 second
-    algorithm = get_the_algorithm(CURRENT_ALGORITHM)
-    all_agents = create_all_agents(all_sprites=SPRITES)
+    ALGORITHM = get_the_algorithm(CURRENT_ALGORITHM)
+    ALL_AGENTS = create_all_agents(all_sprites=SPRITES)
 
     for iteration in range(ITERATIONS_IN_BIG_LOOPS):
         print('# --------------------- iteration: %s --------------------- #' % iteration)
         wait(iteration)
-        calc(iteration, all_agents)
+        calc(iteration)
     finish()
 
 #
