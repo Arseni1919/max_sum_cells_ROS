@@ -48,8 +48,8 @@ logging.basicConfig(format=_format, level=logging.INFO, datefmt="%H:%M:%S")
 # -------------------------------------------------------- FOR EXPERIMENT
 ITERATIONS_IN_BIG_LOOPS = 5
 ITERATIONS_IN_SMALL_LOOPS = 10
-# MOVE_REAL_ROBOTS = True
-MOVE_REAL_ROBOTS = False
+MOVE_REAL_ROBOTS = True
+# MOVE_REAL_ROBOTS = False
 # ONE_BY_ONE = True
 ONE_BY_ONE = False
 POS_POLICY = 'random_furthest'
@@ -89,28 +89,28 @@ SAVE_WEIGHTS = True
 # SAVE_WEIGHTS = False
 
 TARGETS = [
-    TargetTuple(pos=(0.60,2.00), req=REQ, name='target1', num=1),
-    TargetTuple(pos=(2.10,2.00), req=REQ, name='target2', num=2),
+    TargetTuple(pos=(2.81,2.7), req=REQ, name='target1', num=1),
+    TargetTuple(pos=(0.1,0.1), req=REQ, name='target2', num=2),
     # TargetTuple(pos=(0, -2), req=req, name='target3', num=3),
     # TargetTuple(pos=(4, -2), req=req, name='target4', num=4),
 ]
 
 ROBOTS = [
-    RobotTuple(pos=(2.18,0.07), num_of_robot_nei=None, num_of_target_nei=None, name='robot1', num=1, cred=CRED,
+    RobotTuple(pos=(0.95,2.87), num_of_robot_nei=None, num_of_target_nei=None, name='robot1', num=1, cred=CRED,
                SR=SR, MR=MR),
     # RobotTuple(pos=(2.1, 3), num_of_robot_nei=None, num_of_target_nei=None, name='robot2', num=2, cred=CRED,
     #            SR=SR, MR=MR),
-    RobotTuple(pos=( 0.52,0.08), num_of_robot_nei=None, num_of_target_nei=None, name='robot3', num=3, cred=CRED,
+    RobotTuple(pos=( 1.83,1.91), num_of_robot_nei=None, num_of_target_nei=None, name='robot3', num=3, cred=CRED,
                SR=SR, MR=MR),
-    # RobotTuple(pos=(1.2, 1), num_of_robot_nei=None, num_of_target_nei=None, name='robot4', num=4, cred=CRED,
-    #            SR=SR, MR=MR),
-    # RobotTuple(pos=(2.18,0.07), num_of_robot_nei=None, num_of_target_nei=None, name='robot5', num=5, cred=CRED,
+    RobotTuple(pos=(2.67,1.0), num_of_robot_nei=None, num_of_target_nei=None, name='robot4', num=4, cred=CRED,
+               SR=SR, MR=MR),
+    # RobotTuple(pos=(2.8,2.8), num_of_robot_nei=None, num_of_target_nei=None, name='robot5', num=5, cred=CRED,
     #            SR=SR, MR=MR)
 ]
 
 CELLS = []
-DISTANCE_BETWEEN_CELLS = 1.6
-start_pose_to_go = (0.52, 0.08)
+DISTANCE_BETWEEN_CELLS = 1.3
+start_pose_to_go = ( 0.89,0.98)
 #################
 # p_2 . . . p_3 #
 # .         .   #
@@ -118,12 +118,19 @@ start_pose_to_go = (0.52, 0.08)
 # .         .   #
 # p_1 . . . p_4 #
 #################
-p_1 = (0.52, 0.08)
-p_2 = (0.65, 2.03)
-p_3 = (2.13, 2.04)
-p_4 = (2.18, 0.07)
-rows = round(min(abs(p_2[1] - p_1[1]), abs(p_3[1] - p_4[1])) / 0.7)
-columns = round(min(abs(p_2[0] - p_3[0]), abs(p_1[0] - p_4[0])) / 0.7)
+# p_1 = (0.52, 0.08)
+# p_2 = (0.65, 2.03)
+# p_3 = (2.13, 2.04)
+# p_4 = (2.18, 0.07)
+# -------------- #
+p_1 = (0.00, 0.00)
+p_2 = (0.02, 2.9)
+p_3 = (2.8, 2.8)
+p_4 = (2.6, 0.1)
+# -------------- #
+DIVIDER = 0.7
+rows = round(min(abs(p_2[1] - p_1[1]), abs(p_3[1] - p_4[1])) / DIVIDER)
+columns = round(min(abs(p_2[0] - p_3[0]), abs(p_1[0] - p_4[0])) / DIVIDER)
 print('rows: %s, columns: %s' % (rows, columns))
 row_divisions = []
 for i in range(rows):

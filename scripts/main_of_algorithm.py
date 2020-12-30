@@ -27,6 +27,7 @@ def wait(curr_iteration):
                 everybody_ready = False
                 break
         rate.sleep()
+    time_list.append(int(time.time()-start_time))
     print('[WAIT] - finished')
 
 
@@ -38,6 +39,7 @@ def calc(curr_iteration):
     message = json.dumps(message_of_new_positions)
     pub_CALC_READY_topic.publish(message)
     print_check(message, ALL_AGENTS, new_positions)
+    convergence_list.append(calculate_convergence(ALL_AGENTS))
     print('[CALC] - finished')
 
 
@@ -58,6 +60,8 @@ def print_check(message, all_agents, new_positions):
 def finish():
     # save results
     if NEED_TO_SAVE_RESULTS:
+        print('convergence_list: %s' % convergence_list)
+        print('time_list: %s' % time_list)
         print('[FIN] - finished saving results')
     else:
         print('[FIN] - finished without saving results')
@@ -66,7 +70,9 @@ def finish():
 if __name__ == '__main__':
     # ------------------------ INPUT ------------------------ #
     print('######################### %s #########################' % CURRENT_ALGORITHM)
-
+    start_time = time.time()
+    time_list = [0,]
+    convergence_list = []
     CALC_READY_dict = create_empty_by_iteration_dict()
     READY_dict = create_empty_by_iteration_dict()
     # ------------------------------------------------------- #

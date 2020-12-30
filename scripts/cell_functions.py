@@ -9,9 +9,9 @@ def calc_weight(cell, robot):
     # aaa = order_of_nei[i].rund / 10 * (self.num+100)
     # aaa = order_of_nei[i].rund * (self.num/order_of_nei[i].num + self.rund) / 10
     # val = round(order_of_nei[i].rund * (self.rund) * 10, 2)  # --> works
-    val = round(cell.rund * robot.rund * 10, 3)
+    val = round(cell.rund * robot.rund * 1, 6)
     # return round(cell.rund * robot.rund * 1, 3)
-    return round(cell.rund * robot.rund * 10, 3)
+    return round(cell.rund * robot.rund * 1, 6)
 
 
 def func_cell_zero(self, combination, order_of_nei):
