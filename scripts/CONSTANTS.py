@@ -46,8 +46,8 @@ logging.basicConfig(format=_format, level=logging.INFO, datefmt="%H:%M:%S")
 
 
 # -------------------------------------------------------- FOR EXPERIMENT
-ITERATIONS_IN_BIG_LOOPS = 5
-ITERATIONS_IN_SMALL_LOOPS = 10
+ITERATIONS_IN_BIG_LOOPS = 10
+ITERATIONS_IN_SMALL_LOOPS = 30
 MOVE_REAL_ROBOTS = True
 # MOVE_REAL_ROBOTS = False
 # ONE_BY_ONE = True
@@ -60,9 +60,10 @@ MR = 2.5
 # EXECUTE_DELAY = True
 EXECUTE_DELAY = False
 DELAY_OF_COLLISION = 70
-CURRENT_ALGORITHM = 'random_walk'
+CURRENT_ALGORITHM = 'harels_algorithm'
+
 ALGORITHMS_TO_CHECK = [
-    ('random_walk', {}),
+    # ('random_walk', {}),
     ('harels_algorithm', {}),
     ('max_sum_cells', {}),
 ]
@@ -170,6 +171,9 @@ SPRITES.extend(TARGETS)
 SPRITES.extend(ROBOTS)
 SPRITES.extend(CELLS)
 # -----------------------------------------------------------------------
+positions = {'robot1': 2,
+             'robot2': 7,
+             'robot3': 12}
 
 
 # MessageType = namedtuple('MessageType', ['from_var_to_func',

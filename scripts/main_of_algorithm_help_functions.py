@@ -10,15 +10,6 @@ from variable_node import *
 from function_node import *
 
 
-# def init_pygame():
-#     clock = pygame.time.Clock()
-#     pygame.mixer.init()
-#     pygame.init()
-#     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), pygame.SRCALPHA)
-#     finish_sound = pygame.mixer.Sound("sounds/Bell_2.ogg")
-#     return clock, screen, finish_sound
-
-
 def update_statistics(results_dict, graphs, all_agents, collisions, alg_name, iteration, problem):
     results_dict[alg_name]['col'].append(collisions)
     graphs[alg_name][iteration][problem] = calculate_convergence(all_agents)
@@ -36,58 +27,10 @@ def calculate_convergence(all_agents):
     return convergence
 
 
-# def create_results_dict():
-#     # graphs[algorithm][iteration][problem] = convergence
-#     results_dict = {}
-#     graphs = {}
-#     for alg_name, params in ALGORITHMS_TO_CHECK:
-#         results_dict[alg_name] = {'col': []}
-#         graphs[alg_name] = np.zeros((ITERATIONS_IN_BIG_LOOPS, NUMBER_OF_PROBLEMS))
-#     return results_dict, graphs
-
-
 def reset_delay(all_agents):
     for agent in all_agents:
         if 'robot' in agent.name:
             agent.delay = 0
-
-
-# def reset_agents(all_sprites, all_agents, screen):
-#     go_back_to_initial_positions(all_sprites, all_agents, screen)
-#     reset_delay(all_agents)
-
-
-# def go_back_to_initial_positions(all_sprites, all_agents, screen):
-#     for sprite in all_sprites:
-#         for agent in all_agents:
-#             if sprite.name == agent.name:
-#                 sprite.set_pos(agent.initial_pos)
-#                 agent.pos = agent.initial_pos
-#                 agent.prev_pos = agent.initial_pos
-#
-#     first_screen_blit(screen, all_sprites)
-
-
-# def first_screen_blit(screen, all_sprites):
-#     # Draw all sprites
-#     for entity in all_sprites:
-#         screen.blit(entity.surf, entity.rect)
-#
-#     # Update the display
-#     pygame.display.flip()
-#     time.sleep(1)
-
-
-# def close_pygame(finish_sound):
-#     finish_sound.play()
-#     time.sleep(2)
-#     # All done! Stop and quit the mixer.
-#     pygame.mixer.music.stop()
-#     pygame.mixer.quit()
-#
-#     # time.sleep(2)
-#     # Done! Time to quit.
-#     pygame.quit()
 
 
 def pickle_results_if(graphs, results_dict):
