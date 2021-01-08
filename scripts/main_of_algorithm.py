@@ -40,6 +40,7 @@ def calc(curr_iteration):
     pub_CALC_READY_topic.publish(message)
     print_check(message, ALL_AGENTS, new_positions)
     convergence_list.append(calculate_convergence(ALL_AGENTS))
+    collisions_list.append(collisions)
     print('[CALC] - finished')
 
 
@@ -58,10 +59,13 @@ def print_check(message, all_agents, new_positions):
 
 
 def finish():
+    print('algorithm: %s' % CURRENT_ALGORITHM)
+    print('coverage list: %s' % convergence_list)
+    print('times list: %s' % time_list)
+    print('collisions list: %s' % collisions_list)
+
     # save results
     if NEED_TO_SAVE_RESULTS:
-        print('convergence_list: %s' % convergence_list)
-        print('time_list: %s' % time_list)
         print('[FIN] - finished saving results')
     else:
         print('[FIN] - finished without saving results')
@@ -73,6 +77,7 @@ if __name__ == '__main__':
     start_time = time.time()
     time_list = [0,]
     convergence_list = []
+    collisions_list = []
     CALC_READY_dict = create_empty_by_iteration_dict()
     READY_dict = create_empty_by_iteration_dict()
     # ------------------------------------------------------- #

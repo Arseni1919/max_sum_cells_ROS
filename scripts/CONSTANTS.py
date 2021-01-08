@@ -52,23 +52,18 @@ MOVE_REAL_ROBOTS = True
 # MOVE_REAL_ROBOTS = False
 # ONE_BY_ONE = True
 ONE_BY_ONE = False
-POS_POLICY = 'random_furthest'
-REQ = 100
+REQ = 90
 CRED = 30
 SR = 1.0
-MR = 2.5
+MR = 1.5
 # EXECUTE_DELAY = True
 EXECUTE_DELAY = False
 DELAY_OF_COLLISION = 70
-CURRENT_ALGORITHM = 'harels_algorithm'
+CURRENT_ALGORITHM = 'max_sum_cells'
+# CURRENT_ALGORITHM = 'harels_algorithm'
 
-ALGORITHMS_TO_CHECK = [
-    # ('random_walk', {}),
-    ('harels_algorithm', {}),
-    ('max_sum_cells', {}),
-]
-MINUS_INF = -50000
 # -------------------------------------------------- #
+MINUS_INF = -50000
 # FLATTEN = False
 FLATTEN = True
 SHOW_RANGES = True
@@ -90,23 +85,25 @@ SAVE_WEIGHTS = True
 # SAVE_WEIGHTS = False
 
 TARGETS = [
-    TargetTuple(pos=(2.81,2.7), req=REQ, name='target1', num=1),
-    TargetTuple(pos=(0.1,0.1), req=REQ, name='target2', num=2),
+    TargetTuple(pos=(0.01,2.8), req=REQ, name='target1', num=1),
+    TargetTuple(pos=(1.86,2.82), req=REQ, name='target2', num=2),
     # TargetTuple(pos=(0, -2), req=req, name='target3', num=3),
     # TargetTuple(pos=(4, -2), req=req, name='target4', num=4),
 ]
 
 ROBOTS = [
-    RobotTuple(pos=(0.95,2.87), num_of_robot_nei=None, num_of_target_nei=None, name='robot1', num=1, cred=CRED,
+    RobotTuple(pos=(2.8,2.8), num_of_robot_nei=None, num_of_target_nei=None, name='robot1', num=1,
+               cred=CRED, SR=SR, MR=MR),
+    # RobotTuple(pos=(2.1, 3), num_of_robot_nei=None, num_of_target_nei=None, name='robot2', num=2,
+    # cred=CRED, SR=SR, MR=MR),
+    RobotTuple(pos=(1.73,0.07), num_of_robot_nei=None, num_of_target_nei=None, name='robot3', num=3,
+               cred=CRED, SR=SR, MR=MR),
+    RobotTuple(pos=(0.01,0.97), num_of_robot_nei=None, num_of_target_nei=None, name='robot4', num=4, cred=CRED,
                SR=SR, MR=MR),
-    # RobotTuple(pos=(2.1, 3), num_of_robot_nei=None, num_of_target_nei=None, name='robot2', num=2, cred=CRED,
-    #            SR=SR, MR=MR),
-    RobotTuple(pos=( 1.83,1.91), num_of_robot_nei=None, num_of_target_nei=None, name='robot3', num=3, cred=CRED,
-               SR=SR, MR=MR),
-    RobotTuple(pos=(2.67,1.0), num_of_robot_nei=None, num_of_target_nei=None, name='robot4', num=4, cred=CRED,
-               SR=SR, MR=MR),
-    # RobotTuple(pos=(2.8,2.8), num_of_robot_nei=None, num_of_target_nei=None, name='robot5', num=5, cred=CRED,
+    # RobotTuple(pos=(2.73,1.9), num_of_robot_nei=None, num_of_target_nei=None, name='robot5', num=5, cred=CRED,
     #            SR=SR, MR=MR)
+    # RobotTuple(pos=(2.8,2.8), num_of_robot_nei=None, num_of_target_nei=None, name='robot6', num=6,
+    #            cred=CRED, SR=SR, MR=MR),
 ]
 
 CELLS = []
@@ -194,4 +191,10 @@ positions = {'robot1': 2,
 #                             message_types.from_func_dir_collisions_to_var, message_types.from_var_to_func,
 #                             message_types.from_var_to_func_dir)
 # TypesOfRequirement = namedtuple('TypesOfRequirement', ['copy', 'copy_var_dicts', 'copy_func_dicts'])
-# copy_types = TypesOfRequirement('copy', 'copy_var_dicts', 'copy_func_dicts')
+# copy_types = TypesOfRequirement('copy', 'copy_var_dicts', 'copy_func_dicts')\
+
+# ALGORITHMS_TO_CHECK = [
+#     # ('random_walk', {}),
+#     ('harels_algorithm', {}),
+#     ('max_sum_cells', {}),
+# ]

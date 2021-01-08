@@ -179,7 +179,7 @@ if __name__ == '__main__':
 
     # start(READY)
     for iteration in range(ITERATIONS_IN_BIG_LOOPS):
-        print('# --------------------- iteration: %s --------------------- #' % iteration)
+        print('# --------------------- iteration: %s (robot %s) --------------------- #' % (iteration, num_of_robot))
         wait(iteration)
         # prep(iteration)
         # calc_wait(iteration)
