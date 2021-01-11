@@ -55,6 +55,10 @@ def print_check(message, all_agents, new_positions):
                     if new_positions[agent1.name] == agent2.pos:
                         print('%s -> %s' % (agent1.name, agent2.name))
 
+    for agent1 in all_agents:
+        if 'target' in agent1.name:
+            print('%s domain: %s' % (agent1.name, agent1.cells_in_range))
+
         # print('%s neighbours: %s' % (agent.name, [a.name for a in agent.neighbours]))
 
 

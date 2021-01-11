@@ -43,24 +43,22 @@ RobotTuple = namedtuple('AgentTuple',
 # for logging
 _format = "%(asctime)s: %(message)s"
 logging.basicConfig(format=_format, level=logging.INFO, datefmt="%H:%M:%S")
-
+AMOUNT_OF_STD = 1
 
 # -------------------------------------------------------- FOR EXPERIMENT
-ITERATIONS_IN_BIG_LOOPS = 10
+ITERATIONS_IN_BIG_LOOPS = 11
 ITERATIONS_IN_SMALL_LOOPS = 30
-MOVE_REAL_ROBOTS = True
-# MOVE_REAL_ROBOTS = False
 # ONE_BY_ONE = True
 ONE_BY_ONE = False
-REQ = 90
+REQ = 60
 CRED = 30
 SR = 1.0
-MR = 1.5
+MR = 1.0
+DISTANCE_BETWEEN_CELLS = 1.0
 # EXECUTE_DELAY = True
 EXECUTE_DELAY = False
 DELAY_OF_COLLISION = 70
-CURRENT_ALGORITHM = 'max_sum_cells'
-# CURRENT_ALGORITHM = 'harels_algorithm'
+
 
 # -------------------------------------------------- #
 MINUS_INF = -50000
@@ -84,21 +82,27 @@ LOAD_PREVIOUS_WEIGHTS = False
 SAVE_WEIGHTS = True
 # SAVE_WEIGHTS = False
 
+MOVE_REAL_ROBOTS = True
+# MOVE_REAL_ROBOTS = False
+
+# CURRENT_ALGORITHM = 'max_sum_cells'
+CURRENT_ALGORITHM = 'harels_algorithm'
+
 TARGETS = [
-    TargetTuple(pos=(0.01,2.8), req=REQ, name='target1', num=1),
-    TargetTuple(pos=(1.86,2.82), req=REQ, name='target2', num=2),
+    TargetTuple(pos=( 0.0,0.0), req=REQ, name='target1', num=1),
+    TargetTuple(pos=(2.6,0.1), req=REQ, name='target2', num=2),
     # TargetTuple(pos=(0, -2), req=req, name='target3', num=3),
     # TargetTuple(pos=(4, -2), req=req, name='target4', num=4),
 ]
 
 ROBOTS = [
-    RobotTuple(pos=(2.8,2.8), num_of_robot_nei=None, num_of_target_nei=None, name='robot1', num=1,
+    RobotTuple(pos=(0.02,2.9), num_of_robot_nei=None, num_of_target_nei=None, name='robot1', num=1,
                cred=CRED, SR=SR, MR=MR),
     # RobotTuple(pos=(2.1, 3), num_of_robot_nei=None, num_of_target_nei=None, name='robot2', num=2,
     # cred=CRED, SR=SR, MR=MR),
-    RobotTuple(pos=(1.73,0.07), num_of_robot_nei=None, num_of_target_nei=None, name='robot3', num=3,
+    RobotTuple(pos=(0.95,2.87), num_of_robot_nei=None, num_of_target_nei=None, name='robot3', num=3,
                cred=CRED, SR=SR, MR=MR),
-    RobotTuple(pos=(0.01,0.97), num_of_robot_nei=None, num_of_target_nei=None, name='robot4', num=4, cred=CRED,
+    RobotTuple(pos=(2.8,2.8), num_of_robot_nei=None, num_of_target_nei=None, name='robot4', num=4, cred=CRED,
                SR=SR, MR=MR),
     # RobotTuple(pos=(2.73,1.9), num_of_robot_nei=None, num_of_target_nei=None, name='robot5', num=5, cred=CRED,
     #            SR=SR, MR=MR)
@@ -107,7 +111,7 @@ ROBOTS = [
 ]
 
 CELLS = []
-DISTANCE_BETWEEN_CELLS = 1.3
+
 start_pose_to_go = ( 0.89,0.98)
 #################
 # p_2 . . . p_3 #

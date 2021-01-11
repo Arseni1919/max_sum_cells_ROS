@@ -117,6 +117,15 @@ def clear_domains_and_neighbours_update_runds_update_cells(all_agents, robots, t
 #     # if iteration == ITERATIONS_IN_SMALL_LOOPS-1:
 #     #     print()
 
+def set_targets_vs_robots_neighbours(targets, robots):
+    for target in targets:
+        for robot in robots:
+            dist = distance(target.get_pos(), robot.get_pos())
+            if dist < (SR + MR):
+                if robot in target.fmr_set:
+                    target.neighbours.append(robot)
+                    robot.neighbours.append(target)
+
 
 def set_FMR_for_targets(targets, robots):
     create_target_neighbours_for_robots(targets, robots)

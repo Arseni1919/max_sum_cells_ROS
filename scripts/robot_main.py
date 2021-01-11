@@ -62,13 +62,9 @@ def wait(curr_iteration):
     # print(message)
     everybody_ready = False
     while not everybody_ready:
-        # print(READY_dict)
         pub_READY_topic.publish(message)
         everybody_ready = True
-        # for target in TARGETS:
-        #     if target.name not in READY_dict[curr_iteration] or not READY_dict[curr_iteration][target.name]:
-        #         everybody_ready = False
-        #         break
+
         for robot in ROBOTS:
             if robot.name not in READY_dict[curr_iteration] or not READY_dict[curr_iteration][robot.name]:
                 everybody_ready = False

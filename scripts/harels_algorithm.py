@@ -85,14 +85,14 @@ def set_robots_domains(robots, cells):
                     robot.domain.append(cell.num)
 
 
-def set_targets_vs_robots_neighbours(targets, robots):
-    for target in targets:
-        for robot in robots:
-            dist = distance(target.get_pos(), robot.get_pos())
-            if dist < (SR + MR):
-                if robot in target.fmr_set:
-                    target.neighbours.append(robot)
-                    robot.neighbours.append(target)
+# def set_targets_vs_robots_neighbours(targets, robots):
+#     for target in targets:
+#         for robot in robots:
+#             dist = distance(target.get_pos(), robot.get_pos())
+#             if dist < (SR + MR):
+#                 if robot in target.fmr_set:
+#                     target.neighbours.append(robot)
+#                     robot.neighbours.append(target)
 
 
 def set_targets_funcs(targets, cells):

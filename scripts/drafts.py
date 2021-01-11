@@ -14,7 +14,7 @@ def get_cell(num):
     return -1
 
 
-cell1 = get_cell(num=14)
-cell2 = get_cell(num=13)
+cell1 = get_cell(num=7)
+cell2 = get_cell(num=12)
 
 print(distance(pos1=cell1.pos, pos2=cell2.pos))
