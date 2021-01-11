@@ -85,8 +85,8 @@ SAVE_WEIGHTS = True
 MOVE_REAL_ROBOTS = True
 # MOVE_REAL_ROBOTS = False
 
-# CURRENT_ALGORITHM = 'max_sum_cells'
-CURRENT_ALGORITHM = 'harels_algorithm'
+CURRENT_ALGORITHM = 'max_sum_cells'
+# CURRENT_ALGORITHM = 'harels_algorithm'
 
 TARGETS = [
     TargetTuple(pos=( 0.0,0.0), req=REQ, name='target1', num=1),
@@ -96,11 +96,11 @@ TARGETS = [
 ]
 
 ROBOTS = [
-    RobotTuple(pos=(0.02,2.9), num_of_robot_nei=None, num_of_target_nei=None, name='robot1', num=1,
+    RobotTuple(pos=(0.95,2.87), num_of_robot_nei=None, num_of_target_nei=None, name='robot1', num=1,
                cred=CRED, SR=SR, MR=MR),
     # RobotTuple(pos=(2.1, 3), num_of_robot_nei=None, num_of_target_nei=None, name='robot2', num=2,
     # cred=CRED, SR=SR, MR=MR),
-    RobotTuple(pos=(0.95,2.87), num_of_robot_nei=None, num_of_target_nei=None, name='robot3', num=3,
+    RobotTuple(pos=(1.87,2.83), num_of_robot_nei=None, num_of_target_nei=None, name='robot3', num=3,
                cred=CRED, SR=SR, MR=MR),
     RobotTuple(pos=(2.8,2.8), num_of_robot_nei=None, num_of_target_nei=None, name='robot4', num=4, cred=CRED,
                SR=SR, MR=MR),
