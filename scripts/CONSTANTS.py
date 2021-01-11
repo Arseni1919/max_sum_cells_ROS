@@ -96,7 +96,7 @@ TARGETS = [
 ]
 
 ROBOTS = [
-    RobotTuple(pos=(0.95,2.87), num_of_robot_nei=None, num_of_target_nei=None, name='robot1', num=1,
+    RobotTuple(pos=(0.92,1.92), num_of_robot_nei=None, num_of_target_nei=None, name='robot1', num=1,
                cred=CRED, SR=SR, MR=MR),
     # RobotTuple(pos=(2.1, 3), num_of_robot_nei=None, num_of_target_nei=None, name='robot2', num=2,
     # cred=CRED, SR=SR, MR=MR),
